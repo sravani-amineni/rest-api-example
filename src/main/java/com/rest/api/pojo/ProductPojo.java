@@ -1,6 +1,6 @@
 package com.rest.api.pojo;
 
-public class Product {
+public class ProductPojo {
     private String colour;
     private char size;
     public  String productId;

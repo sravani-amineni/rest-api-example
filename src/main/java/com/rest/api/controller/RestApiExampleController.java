@@ -1,8 +1,10 @@
 package com.rest.api.controller;
 
-import com.rest.api.pojo.Product;
-import org.springframework.http.HttpStatus;
+import com.rest.api.entity.Product;
+import com.rest.api.pojo.ProductPojo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.rest.api.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,8 +13,10 @@ import java.util.List;
 
 @RestController("/")
 public class RestApiExampleController {
+   @Autowired
+    ProductService service;
 
-    HashMap<String, Product> map = new HashMap<>();
+    HashMap<String, ProductPojo> map = new HashMap<>();
 
     @GetMapping("/getTest")
     public String getTest(@RequestParam String s) {
@@ -23,36 +27,33 @@ public class RestApiExampleController {
     }
 
     @PostMapping("/createProduct")
-    public String createProduct(@RequestBody Product p) {
+    public String createProduct(@RequestBody ProductPojo p) {
 
-
-        // Adding key-value pairs
-        map.put(p.getProductId(), p);
-
+        service.createProduct(p);
 
         return "Product" + p.getColour() + " with size " + p.getSize() + " created successfully!";
+
     }
 
     @GetMapping("/getProduct")
-    public Product getProduct(@RequestParam String id) {
-        Product product = map.get(id);
+    public ProductPojo getProduct(@RequestParam String id) {
+         ProductPojo product=service.getProduct(id);
+
         return product;
 
     }
+
     @GetMapping("/getAllProduct")
-    public Collection<Product> getAllProduct()
+    public List getAllProduct()
     {
-        return map.values();
-    }
+        List<ProductPojo> productList=service.getAllProduct();
+        return productList;
+        }
 
     @DeleteMapping("/deleteProduct")
     public String deleteProduct(@RequestParam String id) {
-        if (map.containsKey(id)) {
-            Product p = map.remove(id);
-            return "Product Id " + p.getProductId() + " deleted successfully.";
-        } else {
-            return "Product Id is Not available" ;
-        }
+        service.deleteProduct(id);
+        return id;
     }
 }
 

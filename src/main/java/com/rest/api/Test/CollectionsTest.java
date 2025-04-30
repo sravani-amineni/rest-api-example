@@ -6,8 +6,22 @@ import java.util.*;
 public class CollectionsTest {
     public static void main(String[] args) {
         //arrayListTest();
-        setTest();
-        mapTest();
+        //setTest();
+        //mapTest();
+        // int[] arr={1,3,1,2,2} ;
+        //arrayMath(arr);
+        List<String> list = new ArrayList<>();
+        list.add("vanshi");
+        list.add("naresh");
+        System.out.println(isExist("naresh", list));
+    }
+    static void paranthases(String s)
+    {
+
+    }
+
+    static boolean isExist(String s, List list) {
+        return list.contains(s);
     }
 
     private static void arrayListTest() {
@@ -37,6 +51,23 @@ public class CollectionsTest {
         System.out.println("HashSet");
     }
 
+    static void arrayMath(int[] arr) {
+        System.out.println("printing non-repeating elements");
+        HashSet<Integer> hs = new HashSet<>();
+        for (Integer i : arr) {
+            if (hs.contains(i)) {
+                hs.remove(i);
+            } else {
+                hs.add(i);
+                //  System.out.println(i);
+            }
+
+
+        }
+        System.out.println(hs);
+
+    }
+
     static void mapTest() {
         LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
         map.put(1, "sravani");
@@ -46,7 +77,7 @@ public class CollectionsTest {
 
         System.out.println(map);
         System.out.println(map.size());
-        for (Map.Entry<Integer,String> s: map.entrySet()){
+        for (Map.Entry<Integer, String> s : map.entrySet()) {
             System.out.println(s);
 
         }

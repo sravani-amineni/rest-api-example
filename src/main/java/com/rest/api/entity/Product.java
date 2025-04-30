@@ -45,4 +45,5 @@ public class Product {
     public void setColor(String color) {
         this.color = color;
     }
+
 }

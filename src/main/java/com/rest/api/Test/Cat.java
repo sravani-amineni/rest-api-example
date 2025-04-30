@@ -1,6 +1,6 @@
 package com.rest.api.Test;
 
-public class Cat implements Animal
+public class Cat implements Animal,Cloneable
 {
     private int weight;
     private int height;
@@ -18,13 +18,38 @@ public class Cat implements Animal
     {
         System.out.println("Cat eats Biscuits");
     }
-    Cat(int height,int weight)
-    {
-        this.height=height;
-        this.weight=height;
+
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
-    Cat()
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public Cat()
     {
-        System.out.println("Default constructor");
+
+        System.out.println("cat Default constructor");
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Cat c = new Cat();
+        c.setHeight(10);
+        System.out.println(c);
+        System.out.println(c.getHeight());
+        Cat c1 = (Cat) c.clone();
+        System.out.println(c1);
+        System.out.println(c1.getHeight());
+
     }
 }
